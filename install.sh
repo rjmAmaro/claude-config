@@ -9,7 +9,7 @@ command -v claude >/dev/null || { echo "claude CLI not found in PATH" >&2; exit 
 command -v jq >/dev/null || { echo "jq not found (brew install jq)" >&2; exit 1; }
 
 # 1. Symlink the portable files/dirs into ~/.claude
-for item in CLAUDE.md settings.json skills commands agents; do
+for item in CLAUDE.md settings.json skills commands agents rules; do
   [ -e "$REPO/$item" ] || continue
   if [ -d "$REPO/$item" ]; then
     # Link each entry into a real dir, so ~/.claude content not in this repo is kept
