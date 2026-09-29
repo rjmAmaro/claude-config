@@ -11,7 +11,17 @@ command -v jq >/dev/null || { echo "jq not found (brew install jq)" >&2; exit 1;
 # 1. Symlink the portable files/dirs into ~/.claude
 for item in CLAUDE.md settings.json skills commands agents; do
   [ -e "$REPO/$item" ] || continue
-  ln -sfn "$REPO/$item" "$CLAUDE_DIR/$item"
+  if [ -d "$REPO/$item" ]; then
+    # Link each entry into a real dir, so ~/.claude content not in this repo is kept
+    [ -L "$CLAUDE_DIR/$item" ] && rm "$CLAUDE_DIR/$item"
+    mkdir -p "$CLAUDE_DIR/$item"
+    for child in "$REPO/$item"/*; do
+      [ -e "$child" ] || continue
+      ln -sfn "$child" "$CLAUDE_DIR/$item/$(basename "$child")"
+    done
+  else
+    ln -sfn "$REPO/$item" "$CLAUDE_DIR/$item"
+  fi
 done
 
 # 2. Register each MCP server from mcp.json at user scope
