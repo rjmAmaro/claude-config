@@ -20,6 +20,35 @@ claude-config/
 
 Anything missing from this list is simply skipped by the installer.
 
+## Skills
+
+### Main skills
+
+#### `/project-breakdown`
+
+Break down a software project from raw client inputs into a structured set of high-level components and
+requirements ready to be estimated.
+
+#### `/ epic-discovery`
+
+Turn a greenfield project's early docs (requirements / estimate breakdown, architecture notes)
+into a sharpened architecture document plus a set of fully specified epics,
+by grilling the user with the docs as the starting point.
+
+### Support skills
+
+Mostly automatically invoked by the agent.
+
+#### `/asd-ste100`
+
+Simplified Technical English, for when English text must be parsed without a human to resolve ambiguity.
+
+#### `/grill-me` and `/grill-with-docs`
+
+[Skills from Matt Pocock](https://github.com/mattpocock/skills), to relentless interview to sharpen a plan or design (with creation of documentation as we go).
+Supported by the skills `/grilling` and `/domain-modeling`.
+
+
 ## Prerequisites
 
 - macOS with zsh (the default shell)
