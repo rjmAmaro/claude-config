@@ -1,0 +1,7 @@
+{
+  "skill_name": "epic-breakdown",
+  "evals": [
+    {"id": 1, "prompt": "let's break down EP-02. start by grilling me with any open questions, then we'll split it into user stories and major tasks.", "expected_output": "Round 1 of grilling: finds docs under the sub-folder, reads EP-01 stories and ADR-0002, does not re-plan EP-01 work, asks numbered design questions with recommendations.", "files": []},
+    {"id": 2, "prompt": "turn the slack epic into stories. grill me first on whatever needs deciding.", "expected_output": "Finds EP-07 by name, knows Solid Queue exists from EP-01, asks about Slack library, digest timing, user matching, with recommendations.", "files": []}
+  ]
+}

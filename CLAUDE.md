@@ -49,6 +49,7 @@ Never use a raw `model` override.
 | `coder-fast` | haiku | Simple, well-scoped edits: one-file changes, renames, one-line fixes |
 | `coder` | sonnet | Complex work: new features, multi-file changes, tricky bugs |
 | `general-purpose` | sonnet | Mixed research and edit tasks (overrides the built-in, which uses the main model) |
+| `reviewer` | opus | Read-only code review: a slice, a branch, or a GitLab MR. Use through the `review` skill or `rails-tdd`. |
 | `Plan` | inherit | Plan-mode draft plans. It uses the main model on purpose. The main model reviews the draft. |
 
 All custom agents live in `~/.claude/agents/`.

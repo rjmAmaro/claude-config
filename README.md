@@ -13,6 +13,7 @@ claude-config/
 ├── skills/
 ├── commands/
 ├── agents/
+├── partials/        # Rules and other knowledge to be used by sub-agents
 ├── mcp.json         # MCP servers (source of truth)
 ├── install.sh
 └── .gitignore
@@ -35,6 +36,26 @@ Turn a greenfield project's early docs (requirements / estimate breakdown, archi
 into a sharpened architecture document plus a set of fully specified epics,
 by grilling the user with the docs as the starting point.
 
+#### `/epic-breakdown`
+
+Break one specified epic into user stories and major tasks that are ready to hand to a developer or a coding agent,
+by grilling the user on the epic's open questions and on every high- and medium-level decision,
+then writing a stories file and updating the epic, glossary, architecture, ADRs and any affected epics.
+
+#### `/wireframer`
+
+Generate a wireframe, mockup, or low-fidelity clickable prototype of any web UI.
+
+#### `/rails-tdd`
+
+Build Rails features with test-driven development. Breaks work into tiny slices and commits each one.
+Run in human-in-the-loop mode (the default) to approve each step, or use `afk` mode to run unattended when the plan is solid.
+
+#### `/review`
+
+Read-only code review. Reviews a slice, a branch, or a GitLab MR for logic, style, and safety.
+
+
 ### Support skills
 
 Mostly automatically invoked by the agent.
@@ -47,6 +68,25 @@ Simplified Technical English, for when English text must be parsed without a hum
 
 [Skills from Matt Pocock](https://github.com/mattpocock/skills), to relentless interview to sharpen a plan or design (with creation of documentation as we go).
 Supported by the skills `/grilling` and `/domain-modeling`.
+
+### Rails-tdd run modes
+
+`/rails-tdd` has two modes. Choose `hitl` (the default) for feedback, or `afk` when the plan is low-risk and approved.
+
+**hitl** (human in the loop): The skill shows the slice list and waits for your approval. After each slice builds, you see a gate summary (what built, test results, reviewer findings, proposed commit message) and approve before it commits.
+
+**afk** (away from keyboard): The skill runs unattended. It shows the slice list and continues without waiting. A slice commits only when checks are green and the reviewer leaves no Critical or Warning findings. Otherwise, the skill stops at the hitl gate and waits for you.
+
+Both modes always stop for destructive or irreversible operations (dropping columns, data migrations), changes to scope, data model, public interface, or user-facing behavior, reviewer questions that need your intent, and auth errors. The skill never pushes to the remote.
+
+Usage:
+
+```
+/rails-tdd PROJ-123          # hitl (default)
+/rails-tdd PROJ-123 afk      # unattended
+/rails-tdd docs/plans/x.md   # plan from a file
+/rails-tdd                   # ad-hoc or plan from conversation
+```
 
 
 ## Prerequisites
